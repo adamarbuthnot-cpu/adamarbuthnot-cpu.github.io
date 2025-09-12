@@ -1,108 +1,75 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Bouncing Box</title>
-    <script src="jquery.min.js"></script>
-    <style>
-      .box {
-        width: 70px;
-        height: 70px;
-        background-color: teal;
-        font-size: 300%;
-        text-align: center;
-        user-select: none;
-        display: block;
-        position: absolute;
-        top: 100px;
-        /* Change me! */
-        left: 0px;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bouncing Box with Speed Counter</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+    }
+    #box {
+      width: 60px;
+      height: 60px;
+      background: #00ffcc;
+      position: absolute;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">1</div>
+
+  <script>
+    const box = document.getElementById('box');
+    let x = 100;
+    let y = 100;
+    let dx = 2;
+    let dy = 2;
+    let speedLevel = 1;
+
+    function animate() {
+      const boxWidth = box.offsetWidth;
+      const boxHeight = box.offsetHeight;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      x += dx;
+      y += dy;
+
+      // Bounce off walls
+      if (x + boxWidth > windowWidth || x < 0) {
+        dx = -dx;
+      }
+      if (y + boxHeight > windowHeight || y < 0) {
+        dy = -dy;
       }
 
-      .board {
-        height: 100vh;
-      }
-    </style>
-    <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-  </head>
+      box.style.left = x + 'px';
+      box.style.top = y + 'px';
 
-  <body class="board">
-    <!-- HTML for the box -->
-    <div class="box">?</div>
+      requestAnimationFrame(animate);
+    }
 
-    <script>
-      (function () {
-        "use strict";
-        /* global jQuery */
+    // Click to increase speed
+    box.addEventListener('click', () => {
+      speedLevel++;
+      const increase = 1.5;
+      dx = dx > 0 ? dx + increase : dx - increase;
+      dy = dy > 0 ? dy + increase : dy - increase;
+      box.textContent = speedLevel;
+    });
 
-        //////////////////////////////////////////////////////////////////
-        /////////////////// SETUP DO NOT DELETE //////////////////////////
-        //////////////////////////////////////////////////////////////////
-
-        var box = jQuery(".box"); // reference to the HTML .box element
-        var board = jQuery(".board"); // reference to the HTML .board element
-        var boardWidth = board.width(); // the maximum X-Coordinate of the screen
-
-        // update the boardWidth variable when the window is resized
-        jQuery(window).on("resize", function () {
-          boardWidth = board.width();
-        });
-
-        // Every 50 milliseconds, call the update Function (see below)
-        setInterval(update, 50);
-
-        // Every time the box is clicked, call the handleBoxClick Function (see below)
-        box.on("click", handleBoxClick);
-
-        // moves the Box to a new position on the screen along the X-Axis
-        function moveBoxTo(newPositionX) {
-          box.css("left", newPositionX);
-        }
-
-        // changes the text displayed on the Box
-        function changeBoxText(newText) {
-          box.text(newText);
-        }
-
-        //////////////////////////////////////////////////////////////////
-        /////////////////// YOUR CODE BELOW HERE /////////////////////////
-        //////////////////////////////////////////////////////////////////
-
-        // TODO 2 - Variable declarations
-
-
-
-
-
-        /**
-         * This Function will be called 20 times/second.
-         * Each time it is called, it should move the Box to a new location.
-         * If the box drifts off the screen, turn it around!
-         */
-        function update() {
-
-        
-
-          
-        }
-
-        /**
-         * This Function will be called each time the box is clicked.
-         * Each time it is called, it should perform each of the following actions:
-         * - increase the points total
-         * - increase the speed
-         * - move the box to the left side of the screen.
-         */
-        function handleBoxClick() {
-
-
-
-
-        }
-
-
-        
-      })();
-    </script>
-  </body>
+    animate();
+  </script>
+</body>
 </html>

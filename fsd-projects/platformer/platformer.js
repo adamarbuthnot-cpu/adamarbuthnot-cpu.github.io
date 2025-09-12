@@ -27,24 +27,34 @@ $(function () {
     //////////////////////////////////
 
     // TODO 1 - Enable the Grid
-    // toggleGrid();
+    toggleGrid(300);
 
 
     // TODO 2 - Create Platforms
+createPlatform(100,700,200,20, "red")
 
+createPlatform(400,600,200,10,"red")
 
+createPlatform(800,600,200,12, "red")
 
+createPlatform(100,500,200,30,)
 
+createPlatform(700, 600, 62, 190);
     // TODO 3 - Create Collectables
+createCollectable("steve",200,600);
 
+createCollectable("diamond", 500, 500, 0.5, 0.7);
 
+createCollectable("grace", 900, 500, 0.5, 0.7);
+   createCollectable("grace", 200, 400, 0.5, 0.7)
 
-    
     // TODO 4 - Create Cannons
+createCannon("right", 700, 2000,)
 
 
+  createCannon("right", 500, 1600)
     
-    
+   createCannon("left",300, 1300)
     //////////////////////////////////
     // ONLY CHANGE ABOVE THIS POINT //
     //////////////////////////////////
