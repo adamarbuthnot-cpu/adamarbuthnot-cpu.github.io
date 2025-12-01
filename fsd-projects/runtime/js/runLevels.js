@@ -48,11 +48,20 @@ function createSawBlade(x, y) {
 
 createSawBlade(800, 450);
 createSawBlade(1000, 450);
-  createSawBlade(2000, 371);
-  createSawBlade(2200, 450);
-    createSawBlade(2300, 371);
-
-  function createEnemy(x, y) {
+createSawBlade(2000, 371);
+createSawBlade(2200, 450);
+createSawBlade(2300, 371);
+createSawBlade(2900, 450);
+createSawBlade(3000, 450);
+createSawBlade(3400, 371);
+createSawBlade(3500, 450);
+createSawBlade(3600, 371);
+    createSawBlade(3800, 371);
+        createSawBlade(3900, 371);
+            createSawBlade(4000, 371);
+                createSawBlade(4200, 371);
+                    createSawBlade(4290, 371);
+function createEnemy(x, y) {
     var enemy = game.createGameItem("enemy", 25);
     var redSquare = draw.rect(50, 50, "red");
     redSquare.x = -25;
@@ -62,15 +71,15 @@ createSawBlade(1000, 450);
     enemy.x = x;
     enemy.y = y;
 
-    enemy.velocityX = -2;        // moves left
-    enemy.rotationalVelocity = 5; // spins
+    enemy.velocityX = -2;        
+    enemy.rotationalVelocity = 5;
 
     enemy.onPlayerCollision = function () {
         game.changeIntegrity(-10);
     };
 
     enemy.onProjectileCollision = function () {
-        game.increaseScore(100);
+        game.increaseScore(200);
         enemy.fadeOut();
     };
 
@@ -86,6 +95,10 @@ createEnemy(2000, groundY - 50);
 createEnemy(1500, groundY - 50);
 createEnemy(1300, groundY - 50);
 createEnemy(1700, groundY - 50);
+createEnemy(2780, groundY - 50);
+createEnemy(2700, groundY - 50);
+createEnemy(2800, groundY - 50);
+createEnemy(3700, groundY - 50);
 
 function createReward(x, y) {
     var reward = game.createGameItem("reward", 25);
@@ -96,10 +109,12 @@ function createReward(x, y) {
 
     reward.x = x;
     reward.y = y;
-    reward.velocityX = 0; // stationary relative to world
+   reward.velocityX
+     reward.velocityX = -2;        
+    reward.rotationalVelocity = 5;
 
     reward.onPlayerCollision = function() {
-        game.increaseScore(200);
+        game.increaseScore(800);
         reward.fadeOut();
     };
 
@@ -111,11 +126,12 @@ function createReward(x, y) {
 }
 
 
-createReward(100, groundY - 60);
 
-
-
-
+createReward(1000, groundY - 50)
+createReward(4200, groundY - 50)
+createReward(1000, groundY - 50)
+createReward(1000, groundY - 50)
+createReward(1000, groundY - 50)
 
 
     function startLevel() {
