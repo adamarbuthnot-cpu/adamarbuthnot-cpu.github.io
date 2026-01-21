@@ -1,12 +1,11 @@
-
 body {
   background-color: darkgreen;
 }
 
 #board {
-  width: 440 px;
-  height: 440 px;
-  border: 1 px solid white;
+  width: 440px;
+  height: 440px;
+  border: 1px solid white;
   background-color: black;
 }
 
@@ -16,8 +15,8 @@ body {
 
 .snake, .apple {
   display: block;
-  width: 20 px;
-  height: 20 px;
+  width: 20px;
+  height: 20px;
   position: absolute;
   user-select: none;
 }
