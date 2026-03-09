@@ -8,8 +8,8 @@
 #goButton {
     margin: auto;
     width: 100%;
-    border: 2px darkgray double;
-    background: lightgray;
+    border: 2px rgb(217, 216, 216) double;
+    background: rgb(206, 7, 7);
     font-size: 30px;
 }
 #sortContainer {

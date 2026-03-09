@@ -16,7 +16,6 @@ const SEED = 2;
 const FACTOR = 1774339;
 const INCREASE = 7181930;
 
-
 /////////////////////////////////////////////////
 // ALL CONSTANTS BELOW HERE SHOULD NOT BE ALTERED
 
@@ -46,7 +45,6 @@ const elementClass = "sortElement";
 const bubbleClass = "bubbleElement";
 const quickClass = "quickElement";
 
-
 // create undefined functions so that the program won't crash pre-function creation
 var bubbleSort, quickSort;
 
@@ -55,74 +53,61 @@ var bubbleSort, quickSort;
 /////////////////////////////////////////////////
 
 $(document).ready(function(){
-    // resize the containers to fit everything
-    let squareHeight = $(bubbleId).width() * (Math.min((1 / MAX_SQUARES * 100), MAX_SQUARE_WIDTH)/100);
-    
-    $(bubbleId).height(squareHeight*MAX_SQUARES);
-    $(quickId).height(squareHeight*MAX_SQUARES);
-    
-    // create the two lists and all elements
-    generateList(bubbleList, bubbleId, bubbleClass, bubbleElementBaseId);
-    generateList(quickList, quickId, quickClass, quickElementBaseId);
-});
+  // resize the containers to fit everything
+  let squareHeight = $(bubbleId).width() * (Math.min((1 / MAX_SQUARES * 100), MAX_SQUARE_WIDTH)/100);
 
+  $(bubbleId).height(squareHeight*MAX_SQUARES);
+  $(quickId).height(squareHeight*MAX_SQUARES);
+
+  // create the two lists and all elements
+  generateList(bubbleList, bubbleId, bubbleClass, bubbleElementBaseId);
+  generateList(quickList, quickId, quickClass, quickElementBaseId);
+});
 
 /////////////////////////////////////////////////
 /////////////// Helper functions ////////////////
 /////////////////////////////////////////////////
 
-// generate all elements in a list
 function generateList(list, listId, cssClass, baseId){
-    let numbers = [];
+  let numbers = [];
 
-    // start by making an array of numbers
-    // this will be used to keep track of which values have already
-    // been assigned to created elements
-    for (var i = 1; i <= MAX_SQUARES; i++){
-        numbers.push(i);
-    }
+  for (var i = 1; i <= MAX_SQUARES; i++){
+      numbers.push(i);
+  }
 
-    // next, create the elements "randomly"
-    let nextIndex = SEED;
-    for (var i = 0; i < MAX_SQUARES; i++){
-        // choose the next element to create randomly (by grabbing an unused value for the element)
-        nextIndex = chooseIndex(nextIndex, numbers);
+  let nextIndex = SEED;
+  for (var i = 0; i < MAX_SQUARES; i++){
+      nextIndex = chooseIndex(nextIndex, numbers);
 
-        // create the element
-        createAndAddElement(list, listId, cssClass, baseId, numbers[nextIndex]);
+      createAndAddElement(list, listId, cssClass, baseId, numbers[nextIndex]);
 
-        // remove the chosen value from the list of numbers;
-        // this way, every created element will have a unique value associated with it
-        numbers.splice(nextIndex, 1);
-    }
+      numbers.splice(nextIndex, 1);
+  }
 }
 
-// choose a "random" index
 function chooseIndex(startIndex, array){
-    return (startIndex * FACTOR + INCREASE) % array.length;
+  return (startIndex * FACTOR + INCREASE) % array.length;
 }
 
-// create an element and add it to the specified list of elements
 function createAndAddElement(list, listId, cssClass, baseId, value){
-    let newElement = makeElement(baseId + value, value);
+  let newElement = makeElement(baseId + value, value);
 
-    let offset = list.length / MAX_SQUARES * 100;
-    list.push(newElement);
-    
-    $("<div>").addClass(cssClass)
-              .addClass(elementClass)
-              .attr("id", baseId+value)
-              .css("height", MAX_SQUARE_HEIGHT + "%")
-              .css("width", MAX_SQUARE_HEIGHT * value + "%")
-              .css("background-size", 100/value + '% '+ 100 + '%')
-              .css("top", offset + "%")
-              .appendTo(listId);
+  let offset = list.length / MAX_SQUARES * 100;
+  list.push(newElement);
+
+  $("<div>").addClass(cssClass)
+            .addClass(elementClass)
+            .attr("id", baseId+value)
+            .css("height", MAX_SQUARE_HEIGHT + "%")
+            .css("width", MAX_SQUARE_HEIGHT * value + "%")
+            .css("background-size", 100/value + '% '+ 100 + '%')
+            .css("top", offset + "%")
+            .appendTo(listId);
 }
 
-// factory function for elements
 function makeElement(id, value){
-    return {
-        id: "#" + id,
-        value: value
-    };
+  return {
+      id: "#" + id,
+      value: value
+  };
 }
